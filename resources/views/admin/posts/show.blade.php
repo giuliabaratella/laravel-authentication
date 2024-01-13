@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <section class="container">
-        <h1>Home</h1>
-        <p>section content</p>
+        <h1>{{ $post->title }}</h1>
+        <p>{{ $post->body }}</p>
     </section>
 @endsection

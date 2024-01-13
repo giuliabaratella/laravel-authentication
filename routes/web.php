@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\PostController;
+
 use App\Http\Controllers\Admin\DashboardController;
 
 use Illuminate\Support\Facades\Route;
@@ -23,6 +25,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 // creo un gruppo di rotte verificate dall'autenticazione, con il name prefissato da 'admin'. e con il percorso prefissato da 'admin/'
 Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('posts', PostController::class);
 });
 
 Route::middleware('auth')->group(function () {

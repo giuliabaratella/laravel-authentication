@@ -11,7 +11,7 @@ class StorePostRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,25 @@ class StorePostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'required|min:3|max:255|unique:posts',
+            'body' => 'nullable',
+            'image' => 'nullable|url',
+
+
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'title.required' => 'Il titolo è obbligatorio',
+            'title.min' => 'il titolo deve avere almeno :min caratteri',
+            'title.max' => 'il titolo deve avere almeno :max caratteri',
+            'title.unique' => 'Questo titolo esiste già',
+            'image.url' => 'Devi inserire una url valida'
+
+
+
         ];
     }
 }
